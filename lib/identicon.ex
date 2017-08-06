@@ -4,7 +4,8 @@ defmodule Identicon do
   """
 
   @doc """
-  Hello world.
+  See "The Complete Elixir and Phoenix Bootcamp and Tutorial"
+  by Stephen Grider on www.udemy.com
 
   ## Examples
 
