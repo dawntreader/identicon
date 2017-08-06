@@ -9,10 +9,10 @@ The pattern is symmetrically mirrored around the center vertical column (so the 
 We want to generate an identicon based on a string input (a name).  Whenever we use the same name, we should
 get the same identicon.   For example, we don't need to store an image with each user, we could generate the identicon on the fly each time the user logs in.
 
-[//] # ## Installation
+[//]: # ## Installation
 
-[//] # If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-[//] # by adding `identicon` to your list of dependencies in `mix.exs`:
+[//]: # If [available in Hex](https://hex.pm/docs/publish), the package can be installed
+[//]: # by adding `identicon` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
