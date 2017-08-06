@@ -1,6 +1,6 @@
 # Identicon
 
-This project is from 'The Complete Elixir and Phoenix Bootcamp and Tutorial" by Steven Grider on www.udemy.com.
+This project is from "The Complete Elixir and Phoenix Bootcamp and Tutorial" by Steven Grider on www.udemy.com.
 
 An identicon is 250px wide, 250px high.  It is a 5x5 grid of squares, with each square being 50px tall and 50x wide.
 Some of the squares are coloured.
