@@ -8,4 +8,4 @@ The pattern is symmetrically mirrored around the center column; the
 two leftmost columns are a mirror of the two rightmost columns.
 
 We want to generate an identicon based on a string input (a name).  Whenever we use the same name, we should
-get the same identicon.   For example, we don't need to store an image with each user, we could generate the identicon on the fly each time aa given user logs in.
+get the same identicon.   For example, we don't need to store an image with each user, we could generate the identicon on the fly each time a given user logs in.
