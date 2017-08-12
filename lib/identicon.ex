@@ -1,8 +1,26 @@
 defmodule Identicon do
   @moduledoc """
-  Creates an Identicon image for a username.  The input is a username, and
-  the output is an Identicon, which is a 5x5 box with some inner squares coloured.
-  The overall box dimensions are 300px x 300px, so each square is 50px x 50px.
+  Creates an Identicon image for a username.  The input to Identicon.main/1
+  is a username, and the output is an Identicon.
+
+  An Identicon is a 5x5 grid of squares, with some of the squares coloured.
+  The pattern and the colour is selected based on the input string.
+  The Identicon image is 250px wide, 250px high.  Each of the grid squares
+  is 50x wide, 50px high.
+
+  The pattern is symmetrically mirrored around the center column; the
+  two leftmost columns are a mirror of the two rightmost columns.
+
+  Whenever we use the same input string, we should get the same identicon.
+  This way we don't need to store an image with each user, we could generate
+  the identicon on-the-fly each time a given user logs in.
+
+  This project is from ["The Complete Elixir and Phoenix Bootcamp and Tutorial"](https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/learn/v4/overview) by Stephen Grider on www.udemy.com.  Stephen's official github repo for this
+  exercise is [here](https://github.com/StephenGrider/ElixirCode/tree/master/identicon)
+
+  This implementation uses the
+  [EGD (Erlang Graphical Drawer)](http://www1.erlang.org/doc/man/egd.html)
+  library to create the Identicon images.
   """
 
   @doc """
