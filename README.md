@@ -22,5 +22,4 @@ get the same identicon.   This way we don't need to store an image with each use
 
 This implementation uses the [EGD (Erlang Graphical Drawer)](http://www1.erlang.org/doc/man/egd.html) library to create the Identicon images.
 
-Here is a sample Identicon that this code produces for "justin":
-![Sample Identicon](https://github.com/dawntreader/identicon/blob/master/examples/justin.png)
+Here is a sample Identicon that this code produces for "justin":  ![Sample Identicon](https://github.com/dawntreader/identicon/blob/master/examples/justin.png)
