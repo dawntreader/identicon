@@ -1,6 +1,7 @@
 # Identicon
 
-This project is from ["The Complete Elixir and Phoenix Bootcamp and Tutorial"](https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/learn/v4/overview) by Stephen Grider on www.udemy.com.
+This project is from ["The Complete Elixir and Phoenix Bootcamp and Tutorial"](https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/learn/v4/overview) by Stephen Grider on www.udemy.com.  Stephen's official github repo for this 
+exercise: https://github.com/StephenGrider/ElixirCode/tree/master/identicon
 
 ## What's unique to this repo?
 
@@ -20,3 +21,5 @@ We want to generate an identicon based on a string input (a name).  Whenever we 
 get the same identicon.   This way we don't need to store an image with each user, we could generate the identicon on-the-fly each time a given user logs in.
 
 This implementation uses the [EGD (Erlang Graphical Drawer)](http://www1.erlang.org/doc/man/egd.html) library to create the Identicon images.
+
+Here is a sample Identicon that this code produces for "justin":
