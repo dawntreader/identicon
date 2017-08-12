@@ -1,7 +1,7 @@
 # Identicon
 
-This project is from ["The Complete Elixir and Phoenix Bootcamp and Tutorial"](https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/learn/v4/overview) by Stephen Grider on www.udemy.com.  Stephen's official github repo for this 
-exercise: https://github.com/StephenGrider/ElixirCode/tree/master/identicon
+This project is from ["The Complete Elixir and Phoenix Bootcamp and Tutorial"](https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/learn/v4/overview) by Stephen Grider on www.udemy.com.  Stephen's official github repo for this
+exercise is [here](https://github.com/StephenGrider/ElixirCode/tree/master/identicon)
 
 ## What's unique to this repo?
 
@@ -23,3 +23,4 @@ get the same identicon.   This way we don't need to store an image with each use
 This implementation uses the [EGD (Erlang Graphical Drawer)](http://www1.erlang.org/doc/man/egd.html) library to create the Identicon images.
 
 Here is a sample Identicon that this code produces for "justin":
+![Sample Identicon](https://github.com/dawntreader/identicon/blob/master/examples/justin.png)
