@@ -1,12 +1,13 @@
 # Identicon
 
-This project is from "The Complete Elixir and Phoenix Bootcamp and Tutorial" by Stephen Grider on www.udemy.com.
+This project is from ["The Complete Elixir and Phoenix Bootcamp and Tutorial"](https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/learn/v4/overview) by Stephen Grider on www.udemy.com.
 
-## What's special?
+## What's unique to this repo?
 
 Above and beyond the course material, I added the following extensions:
+1. Unit tests are added to the function comments.
 1. Documentation.  Comments added to the modules and methods, and then auto-generated into HTML.
-2. Tests.  Tests added to the function comments.
+
 
 ## What's an Identicon?
 
