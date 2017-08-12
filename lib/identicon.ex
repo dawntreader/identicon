@@ -25,6 +25,8 @@ defmodule Identicon do
     |> build_grid
     |> filter_odd_squares
     |> build_pixel_map
+    |> draw_image
+    |> save_image(input)
   end
 
 
@@ -157,4 +159,24 @@ defmodule Identicon do
     %Identicon.Image{image | pixel_map: pixel_map}
   end
 
+  @doc """
+  """
+  def draw_image(%Identicon.Image{colour: colour, pixel_map: pixel_map}) do
+    box_dimension = @identicon_square_pixels * 50
+    image = :egd.create(box_dimension, box_dimension)
+    fill_colour = :egd.color(colour)
+
+    Enum.each pixel_map, fn({start, stop}) ->
+      :egd.filledRectangle(image, start, stop, fill_colour)
+    end
+
+    :egd.render(image)
+  end
+
+  @doc """
+  We use the original string input as the filename that we save the image to.
+  """
+  def save_image(image, input) do
+    File.write("#{input}.png", image)
+  end
 end
