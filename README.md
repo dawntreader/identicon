@@ -1,7 +1,7 @@
 # Identicon
 
 This project is from ["The Complete Elixir and Phoenix Bootcamp and Tutorial"](https://www.udemy.com/the-complete-elixir-and-phoenix-bootcamp-and-tutorial/learn/v4/overview) by Stephen Grider on www.udemy.com.  Stephen's official github repo for this
-exercise is [here](https://github.com/StephenGrider/ElixirCode/tree/master/identicon)
+exercise is [here](https://github.com/StephenGrider/ElixirCode/tree/master/identicon).
 
 ## What's unique to this repo?
 
@@ -20,9 +20,9 @@ is 50x wide, 50px high.
 The pattern is symmetrically mirrored around the center column; the
 two leftmost columns are a mirror of the two rightmost columns.
 
-Here is a sample Identicon that this code produces for "justin":  
-![Sample Identicon](https://github.com/dawntreader/identicon/blob/master/examples/justin.png)
-
 Whenever we use the same input string, we should get the same identicon.
 This way we don't need to store an image with each user, we could generate
 the identicon on-the-fly each time a given user logs in.
+
+Here is a sample Identicon that this code produces for "justin":  
+![Sample Identicon](https://github.com/dawntreader/identicon/blob/master/examples/justin.png)
