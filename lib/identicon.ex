@@ -24,17 +24,16 @@ defmodule Identicon do
   """
 
   @doc """
-  See "The Complete Elixir and Phoenix Bootcamp and Tutorial"
-  by Stephen Grider on www.udemy.com
-
+  Algorithm:
   - Take a string, and convert it to a list of 16 hex codes.
-  - The first 3 numbers will form an RGB value.
+  - The first 3 numbers of the hex code list will form an RGB value.
     [145, 46, 200] will form a colour with Red=145, Green=46, Blue=200
   - With the 16 numbers, we will discard the last one.  That leaves us
     with 15 numbers, or 5 sets of 3.
       - Each row has 3 columns (the 4th and 5th columns are mirrors)
-        and correspond to a number.  If the number is even, we will colour
-        the square, if it is odd we will not colour it.
+        and correspond to a number.
+      - If the number is even, we will colour the square.  If it is odd
+        we will not colour it.
   """
   def main(input) do
     input
@@ -94,10 +93,11 @@ defmodule Identicon do
 
     iex> Identicon.build_grid(%Identicon.Image{hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]})
     %Identicon.Image{colour: nil, hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
-    grid: [{1, 0}, {2, 1}, {3, 2}, {2, 3}, {1, 4}, {4, 5}, {5, 6}, {6, 7},
-    {5, 8}, {4, 9}, {7, 10}, {8, 11}, {9, 12}, {8, 13}, {7, 14}, {10, 15},
-    {11, 16}, {12, 17}, {11, 18}, {10, 19}, {13, 20}, {14, 21}, {15, 22},
-    {14, 23}, {13, 24}]}
+      grid: [{1, 0}, {2, 1}, {3, 2}, {2, 3}, {1, 4}, {4, 5}, {5, 6}, {6, 7},
+        {5, 8}, {4, 9}, {7, 10}, {8, 11}, {9, 12}, {8, 13}, {7, 14}, {10, 15},
+        {11, 16}, {12, 17}, {11, 18}, {10, 19}, {13, 20}, {14, 21}, {15, 22},
+        {14, 23}, {13, 24}]
+    }
   """
   def build_grid(%Identicon.Image{hex: hex_list} = image) do
     grid =
@@ -178,6 +178,7 @@ defmodule Identicon do
   end
 
   @doc """
+  Create an image with the EGD library.  Return the rendered image.
   """
   def draw_image(%Identicon.Image{colour: colour, pixel_map: pixel_map}) do
     box_dimension = @identicon_square_pixels * 50
@@ -192,7 +193,11 @@ defmodule Identicon do
   end
 
   @doc """
-  We use the original string input as the filename that we save the image to.
+  Save image as a .PNG file.  We use the original string input as the filename that we save the image to.
+
+  ## Parameters
+
+    - input: The filename that we save the image to
   """
   def save_image(image, input) do
     File.write("#{input}.png", image)
