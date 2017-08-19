@@ -8,7 +8,7 @@
     <title>Identicon – identicon v0.1.0</title>
     <link rel="stylesheet" href="dist/app-268c9dc719.css" />
     
-    <script src="dist/sidebar_items-6f88259650.js"></script>
+    <script src="dist/sidebar_items-0c34f04f19.js"></script>
   </head>
   <body data-type="modules">
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
@@ -98,6 +98,31 @@ library to create the Identicon images.</p>
             Summary
           </h1>
           
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:rgb/0">rgb()</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:x/0">x()</a>
+  </div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:y/0">y()</a>
+  </div>
+  
+</div>
+
+  </div>
+
 
           
   <div class="summary-functions summary">
@@ -131,7 +156,7 @@ bottom-right (x,y) coordinates for a rectangle that will be drawn</p>
     <a href="#draw_image/1">draw_image(image)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Create an image with the EGD library.  Return the rendered image</p>
+    <div class="summary-synopsis"><p>Create an image with the <a href="http://www1.erlang.org/doc/man/egd.html">EGD</a> library.  Return the rendered image</p>
 </div>
   
 </div>
@@ -175,9 +200,11 @@ identicon based on this list of numbers</p>
   and correspond to a number.
 </li>
 <li>If the number is even, we will colour the square.  If it is odd
-  we will not colour it
+  we will not colour it.
 </li>
 </ul>
+</li>
+<li>Save the resulting image to a file
 </li>
 </ul>
 </div>
@@ -220,6 +247,85 @@ identicon based on this list of numbers</p>
       
 
       
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Types
+          </h1>
+          <div class="types-list">
+            <div class="detail" id="t:rgb/0">
+  
+  <div class="detail-header">
+    <a href="#t:rgb/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">rgb()</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>rgb() :: 0..255</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="t:x/0">
+  
+  <div class="detail-header">
+    <a href="#t:x/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">x()</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>x() :: 0..250</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="t:y/0">
+  
+  <div class="detail-header">
+    <a href="#t:y/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <span class="signature">y()</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>y() :: 0..250</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    
+  </section>
+</div>
+
+          </div>
+        </section>
+      
 
       
         <section id="functions" class="details-list">
@@ -241,10 +347,16 @@ identicon based on this list of numbers</p>
     
     
     
+      <div class="specs">
+        
+          <pre>build_grid(%Identicon.Image{colour: term, grid: term, hex: [<a href="#t:rgb/0">rgb</a>], pixel_map: term}) :: %Identicon.Image{colour: term, grid: [{<a href="#t:rgb/0">rgb</a>, non_neg_integer}], hex: [<a href="#t:rgb/0">rgb</a>], pixel_map: term}</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
     <p>Breaks the input into chunks of 3, mirrors them to create 5 columns,
-adds an index, and then store the result in the ‘grid’ attribute of image</p>
+adds an index, and then store the result in the ‘grid’ attribute of image.</p>
 <p>The 1st value of each grid tuple is the mirrored row data, the 2nd value
 is the index.</p>
 <h2 id="build_grid/1-examples" class="section-heading">
@@ -252,13 +364,13 @@ is the index.</p>
   Examples
 </h2>
 
-<p>  iex&gt; Identicon.build_grid(%Identicon.Image{hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]})
-  %Identicon.Image{colour: nil, hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],</p>
-<pre><code class="elixir">grid: [{1, 0}, {2, 1}, {3, 2}, {2, 3}, {1, 4}, {4, 5}, {5, 6}, {6, 7},
-  {5, 8}, {4, 9}, {7, 10}, {8, 11}, {9, 12}, {8, 13}, {7, 14}, {10, 15},
-  {11, 16}, {12, 17}, {11, 18}, {10, 19}, {13, 20}, {14, 21}, {15, 22},
-  {14, 23}, {13, 24}]</code></pre>
-<p>  }</p>
+<pre><code class="iex elixir">iex&gt; Identicon.build_grid(%Identicon.Image{hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]})
+%Identicon.Image{colour: nil, hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+   grid: [{1, 0}, {2, 1}, {3, 2}, {2, 3}, {1, 4}, {4, 5}, {5, 6}, {6, 7},
+     {5, 8}, {4, 9}, {7, 10}, {8, 11}, {9, 12}, {8, 13}, {7, 14}, {10, 15},
+     {11, 16}, {12, 17}, {11, 18}, {10, 19}, {13, 20}, {14, 21}, {15, 22},
+     {14, 23}, {13, 24}]
+ }</code></pre>
 
   </section>
 </div>
@@ -273,6 +385,12 @@ is the index.</p>
     
     
     
+      <div class="specs">
+        
+          <pre>build_pixel_map(%Identicon.Image{colour: term, grid: [{<a href="#t:rgb/0">rgb</a>, non_neg_integer}], hex: term, pixel_map: term}) :: %Identicon.Image{colour: term, grid: term, hex: term, pixel_map: [{{<a href="#t:x/0">x</a>, <a href="#t:y/0">y</a>}, {<a href="#t:x/0">x</a>, <a href="#t:y/0">y</a>}}]}</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
     <p>Add a pixel_map attribute to our struct.  For each grid square that we want
@@ -284,17 +402,17 @@ bottom-right (x,y) coordinates for a rectangle that will be drawn.</p>
   Examples
 </h2>
 
-<p>  iex&gt; Identicon.build_pixel_map(%Identicon.Image{grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12}, {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}]})
-  %Identicon.Image{</p>
-<pre><code class="elixir">colour: nil, hex: nil,
-grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12},
-       {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}],
-pixel_map: [{{0, 0}, {50, 50}}, {{100, 0}, {150, 50}}, {{200, 0}, {250, 50}},
-  {{50, 50}, {100, 100}}, {{150, 50}, {200, 100}}, {{0, 100}, {50, 150}},
-  {{100, 100}, {150, 150}}, {{200, 100}, {250, 150}}, {{50, 150}, {100, 200}},
-  {{150, 150}, {200, 200}}, {{0, 200}, {50, 250}}, {{100, 200}, {150, 250}},
-  {{200, 200}, {250, 250}}]</code></pre>
-<p>  }</p>
+<pre><code class="iex elixir">iex&gt; Identicon.build_pixel_map(%Identicon.Image{grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12}, {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}]})
+%Identicon.Image{
+  colour: nil, hex: nil,
+  grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12},
+         {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}],
+  pixel_map: [{{0, 0}, {50, 50}}, {{100, 0}, {150, 50}}, {{200, 0}, {250, 50}},
+    {{50, 50}, {100, 100}}, {{150, 50}, {200, 100}}, {{0, 100}, {50, 150}},
+    {{100, 100}, {150, 150}}, {{200, 100}, {250, 150}}, {{50, 150}, {100, 200}},
+    {{150, 150}, {200, 200}}, {{0, 200}, {50, 250}}, {{100, 200}, {150, 250}},
+    {{200, 200}, {250, 250}}]
+}</code></pre>
 
   </section>
 </div>
@@ -309,9 +427,15 @@ pixel_map: [{{0, 0}, {50, 50}}, {{100, 0}, {150, 50}}, {{200, 0}, {250, 50}},
     
     
     
+      <div class="specs">
+        
+          <pre>draw_image(%Identicon.Image{colour: term, grid: term, hex: term, pixel_map: [{{<a href="#t:x/0">x</a>, <a href="#t:y/0">y</a>}, {<a href="#t:x/0">x</a>, <a href="#t:y/0">y</a>}}]}) :: binary</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
-    <p>Create an image with the EGD library.  Return the rendered image.</p>
+    <p>Create an image with the <a href="http://www1.erlang.org/doc/man/egd.html">EGD</a> library.  Return the rendered image.</p>
 
   </section>
 </div>
@@ -326,6 +450,12 @@ pixel_map: [{{0, 0}, {50, 50}}, {{100, 0}, {150, 50}}, {{200, 0}, {250, 50}},
     
     
     
+      <div class="specs">
+        
+          <pre>filter_odd_squares(%Identicon.Image{colour: term, grid: [{<a href="#t:rgb/0">rgb</a>, non_neg_integer}], hex: term, pixel_map: term}) :: %Identicon.Image{colour: term, grid: [{<a href="#t:rgb/0">rgb</a>, non_neg_integer}], hex: term, pixel_map: term}</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
     <p>Filters the grid attribute, so that it only contains squares with
@@ -335,12 +465,12 @@ even attribute values.  Odd values are removed.</p>
   Examples
 </h2>
 
-<p>  iex&gt; Identicon.filter_odd_squares(%Identicon.Image{grid: [{30, 0}, {31, 1}, {32, 2}, {33, 3}, {34, 4}, {35, 5}, {36, 6}, {37, 7}, {38, 8}, {39, 9}, {40, 10}, {41, 11}, {42, 12}, {43, 13}, {44, 14}, {45, 15}, {46, 16}, {47, 17}, {48, 18}, {49, 19}, {50, 20}, {51, 21}, {52, 22}, {53, 23}, {54, 24}]})
-  %Identicon.Image{</p>
-<pre><code class="elixir">colour: nil, hex: nil,
-grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12},
-       {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}]</code></pre>
-<p>  }</p>
+<pre><code class="iex elixir">iex&gt; Identicon.filter_odd_squares(%Identicon.Image{grid: [{30, 0}, {31, 1}, {32, 2}, {33, 3}, {34, 4}, {35, 5}, {36, 6}, {37, 7}, {38, 8}, {39, 9}, {40, 10}, {41, 11}, {42, 12}, {43, 13}, {44, 14}, {45, 15}, {46, 16}, {47, 17}, {48, 18}, {49, 19}, {50, 20}, {51, 21}, {52, 22}, {53, 23}, {54, 24}]})
+%Identicon.Image{
+  colour: nil, hex: nil,
+  grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12},
+         {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}]
+}</code></pre>
 
   </section>
 </div>
@@ -354,6 +484,12 @@ grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12},
     <span class="signature">hash_input(input)</span>
     
     
+    
+      <div class="specs">
+        
+          <pre>hash_input(binary) :: %Identicon.Image{colour: term, grid: term, hex: [<a href="#t:rgb/0">rgb</a>], pixel_map: term}</pre>
+        
+      </div>
     
   </div>
   <section class="docstring">
@@ -374,8 +510,8 @@ identicon based on this list of numbers.</p>
   Examples
 </h2>
 
-<p>  iex&gt; Identicon.hash_input(“asdf”)
-  %Identicon.Image{hex: [145, 46, 200, 3, 178, 206, 73, 228, 165, 65, 6, 141, 73, 90, 181, 112]}</p>
+<pre><code class="iex elixir">iex&gt; Identicon.hash_input(&quot;asdf&quot;)
+%Identicon.Image{hex: [145, 46, 200, 3, 178, 206, 73, 228, 165, 65, 6, 141, 73, 90, 181, 112]}</code></pre>
 
   </section>
 </div>
@@ -389,6 +525,12 @@ identicon based on this list of numbers.</p>
     <span class="signature">main(input)</span>
     
     
+    
+      <div class="specs">
+        
+          <pre>main(binary) :: :ok | no_return</pre>
+        
+      </div>
     
   </div>
   <section class="docstring">
@@ -410,6 +552,8 @@ identicon based on this list of numbers.</p>
 </li>
 </ul>
 </li>
+<li>Save the resulting image to a file.
+</li>
 </ul>
 
   </section>
@@ -425,6 +569,12 @@ identicon based on this list of numbers.</p>
     
     
     
+      <div class="specs">
+        
+          <pre>mirror_row([<a href="#t:rgb/0">rgb</a>]) :: [<a href="#t:rgb/0">rgb</a>]</pre>
+        
+      </div>
+    
   </div>
   <section class="docstring">
     <h2 id="mirror_row/1-examples" class="section-heading">
@@ -432,8 +582,8 @@ identicon based on this list of numbers.</p>
   Examples
 </h2>
 
-<p>  iex&gt; Identicon.mirror_row([1, 2, 3])
-  [1, 2, 3, 2, 1]</p>
+<pre><code class="iex elixir">iex&gt; Identicon.mirror_row([1, 2, 3])
+[1, 2, 3, 2, 1]</code></pre>
 
   </section>
 </div>
@@ -447,6 +597,12 @@ identicon based on this list of numbers.</p>
     <span class="signature">pick_colour(image)</span>
     
     
+    
+      <div class="specs">
+        
+          <pre>pick_colour(%Identicon.Image{colour: term, grid: term, hex: [<a href="#t:rgb/0">rgb</a>], pixel_map: term}) :: %Identicon.Image{colour: {<a href="#t:rgb/0">rgb</a>, <a href="#t:rgb/0">rgb</a>, <a href="#t:rgb/0">rgb</a>}, grid: term, hex: [<a href="#t:rgb/0">rgb</a>], pixel_map: term}</pre>
+        
+      </div>
     
   </div>
   <section class="docstring">
@@ -471,6 +627,12 @@ identicon based on this list of numbers.</p>
     <span class="signature">save_image(image, input)</span>
     
     
+    
+      <div class="specs">
+        
+          <pre>save_image(binary, binary) :: :ok | no_return</pre>
+        
+      </div>
     
   </div>
   <section class="docstring">

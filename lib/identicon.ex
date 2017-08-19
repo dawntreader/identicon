@@ -34,7 +34,9 @@ defmodule Identicon do
         and correspond to a number.
       - If the number is even, we will colour the square.  If it is odd
         we will not colour it.
+  - Save the resulting image to a file.
   """
+  @spec main(binary) :: :ok | no_return
   def main(input) do
     input
     |> hash_input
@@ -58,9 +60,11 @@ defmodule Identicon do
 
   ## Examples
 
-    iex> Identicon.hash_input("asdf")
-    %Identicon.Image{hex: [145, 46, 200, 3, 178, 206, 73, 228, 165, 65, 6, 141, 73, 90, 181, 112]}
+      iex> Identicon.hash_input("asdf")
+      %Identicon.Image{hex: [145, 46, 200, 3, 178, 206, 73, 228, 165, 65, 6, 141, 73, 90, 181, 112]}
   """
+  @type rgb() :: 0..255
+  @spec hash_input(binary) :: %Identicon.Image{hex: [rgb]}
   def hash_input(input) do
     hex = :crypto.hash(:md5, input)
     |> :binary.bin_to_list
@@ -76,6 +80,7 @@ defmodule Identicon do
       iex> Identicon.pick_colour(%Identicon.Image{hex: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]})
       %Identicon.Image{colour: {1, 2, 3}, hex: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]}
   """
+  @spec pick_colour(%Identicon.Image{hex: [rgb]}) :: %Identicon.Image{hex: [rgb], colour: {rgb, rgb, rgb}}
   def pick_colour(%Identicon.Image{hex: [red, green, blue| _tail]} = image) do
       # we convert colour from a list to a tuple, because each index
       # in the tuple has meaning.  1st spot is red, 2nd spot is green, etc.
@@ -84,21 +89,23 @@ defmodule Identicon do
 
   @doc """
   Breaks the input into chunks of 3, mirrors them to create 5 columns,
-  adds an index, and then store the result in the 'grid' attribute of image
+  adds an index, and then store the result in the 'grid' attribute of image.
 
   The 1st value of each grid tuple is the mirrored row data, the 2nd value
   is the index.
 
   ## Examples
 
-    iex> Identicon.build_grid(%Identicon.Image{hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]})
-    %Identicon.Image{colour: nil, hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
-      grid: [{1, 0}, {2, 1}, {3, 2}, {2, 3}, {1, 4}, {4, 5}, {5, 6}, {6, 7},
-        {5, 8}, {4, 9}, {7, 10}, {8, 11}, {9, 12}, {8, 13}, {7, 14}, {10, 15},
-        {11, 16}, {12, 17}, {11, 18}, {10, 19}, {13, 20}, {14, 21}, {15, 22},
-        {14, 23}, {13, 24}]
-    }
+      iex> Identicon.build_grid(%Identicon.Image{hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]})
+      %Identicon.Image{colour: nil, hex: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16],
+         grid: [{1, 0}, {2, 1}, {3, 2}, {2, 3}, {1, 4}, {4, 5}, {5, 6}, {6, 7},
+           {5, 8}, {4, 9}, {7, 10}, {8, 11}, {9, 12}, {8, 13}, {7, 14}, {10, 15},
+           {11, 16}, {12, 17}, {11, 18}, {10, 19}, {13, 20}, {14, 21}, {15, 22},
+           {14, 23}, {13, 24}]
+       }
+
   """
+  @spec build_grid(%Identicon.Image{hex: [rgb]}) :: %Identicon.Image{hex: [rgb], grid: [{rgb, non_neg_integer}]}
   def build_grid(%Identicon.Image{hex: hex_list} = image) do
     grid =
       hex_list
@@ -113,9 +120,10 @@ defmodule Identicon do
   @doc """
   ## Examples
 
-    iex> Identicon.mirror_row([1, 2, 3])
-    [1, 2, 3, 2, 1]
+      iex> Identicon.mirror_row([1, 2, 3])
+      [1, 2, 3, 2, 1]
   """
+  @spec mirror_row([rgb]) :: [rgb]
   def mirror_row([first, second | _tail] = row) do
     row ++ [second, first]
   end
@@ -126,13 +134,14 @@ defmodule Identicon do
 
   ## Examples
 
-    iex> Identicon.filter_odd_squares(%Identicon.Image{grid: [{30, 0}, {31, 1}, {32, 2}, {33, 3}, {34, 4}, {35, 5}, {36, 6}, {37, 7}, {38, 8}, {39, 9}, {40, 10}, {41, 11}, {42, 12}, {43, 13}, {44, 14}, {45, 15}, {46, 16}, {47, 17}, {48, 18}, {49, 19}, {50, 20}, {51, 21}, {52, 22}, {53, 23}, {54, 24}]})
-    %Identicon.Image{
-      colour: nil, hex: nil,
-      grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12},
-             {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}]
-    }
+      iex> Identicon.filter_odd_squares(%Identicon.Image{grid: [{30, 0}, {31, 1}, {32, 2}, {33, 3}, {34, 4}, {35, 5}, {36, 6}, {37, 7}, {38, 8}, {39, 9}, {40, 10}, {41, 11}, {42, 12}, {43, 13}, {44, 14}, {45, 15}, {46, 16}, {47, 17}, {48, 18}, {49, 19}, {50, 20}, {51, 21}, {52, 22}, {53, 23}, {54, 24}]})
+      %Identicon.Image{
+        colour: nil, hex: nil,
+        grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12},
+               {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}]
+      }
   """
+  @spec filter_odd_squares(%Identicon.Image{grid: [{rgb, non_neg_integer}]}) :: %Identicon.Image{grid: [{rgb, non_neg_integer}]}
   def filter_odd_squares(%Identicon.Image{grid: grid} = image) do
     grid = Enum.filter grid, fn({code, _index}) ->
       rem(code, 2) == 0
@@ -150,18 +159,21 @@ defmodule Identicon do
 
   ## Examples
 
-    iex> Identicon.build_pixel_map(%Identicon.Image{grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12}, {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}]})
-    %Identicon.Image{
-      colour: nil, hex: nil,
-      grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12},
-             {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}],
-      pixel_map: [{{0, 0}, {50, 50}}, {{100, 0}, {150, 50}}, {{200, 0}, {250, 50}},
-        {{50, 50}, {100, 100}}, {{150, 50}, {200, 100}}, {{0, 100}, {50, 150}},
-        {{100, 100}, {150, 150}}, {{200, 100}, {250, 150}}, {{50, 150}, {100, 200}},
-        {{150, 150}, {200, 200}}, {{0, 200}, {50, 250}}, {{100, 200}, {150, 250}},
-        {{200, 200}, {250, 250}}]
-    }
+      iex> Identicon.build_pixel_map(%Identicon.Image{grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12}, {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}]})
+      %Identicon.Image{
+        colour: nil, hex: nil,
+        grid: [{30, 0}, {32, 2}, {34, 4}, {36, 6}, {38, 8}, {40, 10}, {42, 12},
+               {44, 14}, {46, 16}, {48, 18}, {50, 20}, {52, 22}, {54, 24}],
+        pixel_map: [{{0, 0}, {50, 50}}, {{100, 0}, {150, 50}}, {{200, 0}, {250, 50}},
+          {{50, 50}, {100, 100}}, {{150, 50}, {200, 100}}, {{0, 100}, {50, 150}},
+          {{100, 100}, {150, 150}}, {{200, 100}, {250, 150}}, {{50, 150}, {100, 200}},
+          {{150, 150}, {200, 200}}, {{0, 200}, {50, 250}}, {{100, 200}, {150, 250}},
+          {{200, 200}, {250, 250}}]
+      }
   """
+  @type x() :: 0..250
+  @type y() :: 0..250
+  @spec build_pixel_map(%Identicon.Image{grid: [{rgb, non_neg_integer}]}) :: %Identicon.Image{pixel_map: [{{x,y}, {x, y}}]}
   @identicon_square_pixels 50
   def build_pixel_map(%Identicon.Image{grid: grid} = image) do
     pixel_map = Enum.map grid, fn({_code, index}) ->
@@ -178,8 +190,9 @@ defmodule Identicon do
   end
 
   @doc """
-  Create an image with the EGD library.  Return the rendered image.
+  Create an image with the [EGD](http://www1.erlang.org/doc/man/egd.html) library.  Return the rendered image.
   """
+  @spec draw_image(%Identicon.Image{pixel_map: [{{x,y}, {x, y}}]}) :: binary()
   def draw_image(%Identicon.Image{colour: colour, pixel_map: pixel_map}) do
     box_dimension = @identicon_square_pixels * 50
     image = :egd.create(box_dimension, box_dimension)
@@ -199,6 +212,7 @@ defmodule Identicon do
 
     - input: The filename that we save the image to
   """
+  @spec save_image(binary, binary) :: :ok | no_return
   def save_image(image, input) do
     File.write("#{input}.png", image)
   end

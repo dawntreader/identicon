@@ -21,9 +21,11 @@ defmodule Identicon.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:egd, github: "erlang/egd"}, 
+      {:egd, github: "erlang/egd"},
       {:earmark, "~> 1.2",  only: :dev},
-      {:ex_doc,  "~> 0.16", only: :dev}
+      {:ex_doc,  "~> 0.16", only: :dev},
+      {:dialyxir, "~> 0.5", only: :dev, runtime: false}
     ]
   end
+
 end
