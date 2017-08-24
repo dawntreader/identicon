@@ -9,7 +9,6 @@ To play with the code a bit, I made some enhancements to the solution from the c
 1. The default course material generated an identicon, but the total image size was
 2500x2500.  The top-left 250x250 pixel contained the identicon, and the rest was
  not used.  
-
 I added a method 'crop_image' that crops out the 250x250 pixels starting at the
 top-left corner.  This was done using the [Graphics Magick](www.graphicsmagick.org)
 library and [exmagick](https://github.com/Xerpa/exmagick).
