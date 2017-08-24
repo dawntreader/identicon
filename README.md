@@ -34,4 +34,4 @@ This way we don't need to store an image with each user, we could generate
 the identicon on-the-fly each time a given user logs in.
 
 Here is a sample Identicon that this code produces for "justin":  
-![Sample Identicon](https://github.com/dawntreader/identicon/blob/master/examples/justin.png)
+![Sample Identicon](https://github.com/justingamble/identicon/blob/master/examples/justin.png)
