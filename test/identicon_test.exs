@@ -65,4 +65,13 @@ defmodule IdenticonTest do
     verify_files_are_same("Image2.png", "Image2.bak")
     verify_files_are_same("Image3.png", "Image3.bak")
   end
+
+  test "The generated identicon is 250x250 pixels" do
+    # I could verify this using the Graphic Magick library.
+    # But I'd prefer to verify with something else, as the Graphic Magick library
+    # was used to generate the file in the first place.
+    Identicon.main("Image1")
+    {"image/png", xPixels, yPixels, "PNG"} = ExImageInfo.info File.read!("Image1.png")
+    assert {xPixels, yPixels} == {250, 250}
+  end
 end

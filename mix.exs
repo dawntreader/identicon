@@ -24,7 +24,9 @@ defmodule Identicon.Mixfile do
       {:egd, github: "erlang/egd"},
       {:earmark, "~> 1.2",  only: :dev},
       {:ex_doc,  "~> 0.16", only: :dev},
-      {:dialyxir, "~> 0.5", only: :dev, runtime: false}
+      {:dialyxir, "~> 0.5", only: :dev, runtime: false},
+      {:exmagick, "~> 0.0.5"},
+      {:ex_image_info, "~> 0.2.0"}
     ]
   end
 

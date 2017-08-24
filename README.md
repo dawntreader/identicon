@@ -5,8 +5,17 @@ exercise is [here](https://github.com/StephenGrider/ElixirCode/tree/master/ident
 
 ## What's unique to this repo?
 
-To play with the code a bit, I made some enhancements.  The course material
-does not include these enhancements.
+To play with the code a bit, I made some enhancements to the solution from the course.
+1. The default course material generated an identicon, but the total image size was
+2500x2500.  The top-left 250x250 pixel contained the identicon, and the rest was
+ not used.  
+
+I added a method 'crop_image' that crops out the 250x250 pixels starting at the
+top-left corner.  This was done using the [Graphics Magick](www.graphicsmagick.org)
+library and [exmagick](https://github.com/Xerpa/exmagick).
+The Graphic Magick one-line command to do the cropping is: ```
+gm convert -crop 250x250 old.png new.png
+```
 1. Documentation.  Comments added to the modules and methods.
 1. Added unit tests via function comments and identicon_test.exs
 1. Added type specifications to the functions.

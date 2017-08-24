@@ -46,6 +46,8 @@ defmodule Identicon do
     |> build_pixel_map
     |> draw_image
     |> save_image(input)
+
+    crop_image(input)
   end
 
 
@@ -206,7 +208,8 @@ defmodule Identicon do
   end
 
   @doc """
-  Save image as a .PNG file.  We use the original string input as the filename that we save the image to.
+  Save image as a .PNG file.  We use the original string input as the filename
+  that we save the image to.
 
   ## Parameters
 
@@ -215,5 +218,26 @@ defmodule Identicon do
   @spec save_image(binary, binary) :: :ok | no_return
   def save_image(image, input) do
     File.write("#{input}.png", image)
+  end
+
+  @doc """
+  The default image is 2500x2500, with the top-left 250x250 pixels containing
+  our image.  This function crops out the 250x250 pixels starting at the
+  top-left corner, and stores the result in a file of the same name.
+
+  ## Parameters
+
+    - input: The filename that we save the image to (without any suffix)
+  """
+  @spec crop_image(binary) :: :ok | no_return
+  def crop_image(input) do
+    total_square_pixels = @identicon_square_pixels * 5
+    image_path = Path.join(__DIR__, "../#{input}.png")
+    ExMagick.init!()
+    |> ExMagick.image_load!(image_path)
+    |> ExMagick.crop!(0, 0, total_square_pixels, total_square_pixels)
+    |> ExMagick.image_dump!(image_path)   # overwrites previous image
+
+    :ok
   end
 end

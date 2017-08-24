@@ -8,7 +8,7 @@
     <title>Identicon – identicon v0.1.0</title>
     <link rel="stylesheet" href="dist/app-268c9dc719.css" />
     
-    <script src="dist/sidebar_items-0c34f04f19.js"></script>
+    <script src="dist/sidebar_items-bddca9b4a5.js"></script>
   </head>
   <body data-type="modules">
     <script>try { if(localStorage.getItem('night-mode')) document.body.className += ' night-mode'; } catch (e) { }</script>
@@ -153,6 +153,17 @@ bottom-right (x,y) coordinates for a rectangle that will be drawn</p>
 </div>
 <div class="summary-row">
   <div class="summary-signature">
+    <a href="#crop_image/1">crop_image(input)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>The default image is 2500x2500, with the top-left 250x250 pixels containing
+our image.  This function crops out the 250x250 pixels starting at the
+top-left corner, and stores the result in a file of the same name</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
     <a href="#draw_image/1">draw_image(image)</a>
   </div>
   
@@ -233,7 +244,8 @@ identicon based on this list of numbers</p>
     <a href="#save_image/2">save_image(image, input)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Save image as a .PNG file.  We use the original string input as the filename that we save the image to</p>
+    <div class="summary-synopsis"><p>Save image as a .PNG file.  We use the original string input as the filename
+that we save the image to</p>
 </div>
   
 </div>
@@ -413,6 +425,40 @@ bottom-right (x,y) coordinates for a rectangle that will be drawn.</p>
     {{150, 150}, {200, 200}}, {{0, 200}, {50, 250}}, {{100, 200}, {150, 250}},
     {{200, 200}, {250, 250}}]
 }</code></pre>
+
+  </section>
+</div>
+<div class="detail" id="crop_image/1">
+  
+  <div class="detail-header">
+    <a href="#crop_image/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <span class="signature">crop_image(input)</span>
+    
+    
+    
+      <div class="specs">
+        
+          <pre>crop_image(binary) :: :ok | no_return</pre>
+        
+      </div>
+    
+  </div>
+  <section class="docstring">
+    <p>The default image is 2500x2500, with the top-left 250x250 pixels containing
+our image.  This function crops out the 250x250 pixels starting at the
+top-left corner, and stores the result in a file of the same name.</p>
+<h2 id="crop_image/1-parameters" class="section-heading">
+  <a href="#crop_image/1-parameters" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Parameters
+</h2>
+
+<ul>
+<li>input: The filename that we save the image to (without any suffix)
+</li>
+</ul>
 
   </section>
 </div>
@@ -636,7 +682,8 @@ identicon based on this list of numbers.</p>
     
   </div>
   <section class="docstring">
-    <p>Save image as a .PNG file.  We use the original string input as the filename that we save the image to.</p>
+    <p>Save image as a .PNG file.  We use the original string input as the filename
+that we save the image to.</p>
 <h2 id="save_image/2-parameters" class="section-heading">
   <a href="#save_image/2-parameters" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Parameters
