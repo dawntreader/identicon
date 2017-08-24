@@ -5,10 +5,11 @@ exercise is [here](https://github.com/StephenGrider/ElixirCode/tree/master/ident
 
 ## What's unique to this repo?
 
-Above and beyond the course material, I added the following extensions:
+To play with the code a bit, I made some enhancements.  The course material
+does not include these enhancements.
 1. Documentation.  Comments added to the modules and methods.
-1. Unit tests are added to the function comments.
-1. Type specifications are added to the functions.
+1. Added unit tests via function comments and identicon_test.exs
+1. Added type specifications to the functions.
 1. Mix file includes generation of HTML documentation.  Run: ``mix docs``
 1. Mix file includes Dialyzer module.  Run: ``mix compile; mix dialyzer``
 
