@@ -8,8 +8,8 @@ exercise is [here](https://github.com/StephenGrider/ElixirCode/tree/master/ident
 To play with the code a bit, I made some enhancements to the solution from the course.
 1. The default course material generated an identicon whereby the total image size was
 2500x2500, with the top-left 250x250 pixels containing the identicon.
-I added a method 'crop_image' that crops out the 250x250 pixels starting at the
-top-left corner.  This was done using the [Graphics Magick](www.graphicsmagick.org)
+I added a method ''crop_image'' that crops out the 250x250 pixels starting at the
+top-left corner.  This was done using the [Graphics Magick](http://www.graphicsmagick.org)
 library and [exmagick](https://github.com/Xerpa/exmagick).
 The Graphic Magick one-line command to do the cropping is:
 gm convert -crop 250x250 old.png new.png
