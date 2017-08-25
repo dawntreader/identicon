@@ -11,11 +11,9 @@ To play with the code a bit, I made some enhancements to the solution from the c
 I added a method ''crop_image'' that crops out the 250x250 pixels starting at the
 top-left corner.  This was done using the [Graphics Magick](http://www.graphicsmagick.org)
 library and [exmagick](https://github.com/Xerpa/exmagick).
-1. Documentation.  Comments added to the modules and methods.
-1. Added unit tests via function comments and identicon_test.exs
-1. Added type specifications to the functions.
-1. Mix file includes generation of HTML documentation.  Run: ``mix docs``
-1. Mix file includes Dialyzer module.  Run: ``mix compile; mix dialyzer``
+1. Documentation.  Comments added to the modules and methods.  Mix file includes generation of HTML documentation.  Run: ``mix docs``
+1. Added unit tests via [function comments](https://github.com/justingamble/identicon/blob/master/lib/identicon.ex)  and [identicon_test.exs](https://github.com/justingamble/identicon/blob/master/test/identicon_test.exs)
+1. Added type specifications to the functions.  Mix file includes Dialyzer module.  Run: ``mix compile; mix dialyzer``
 
 ## What's an Identicon?
 
