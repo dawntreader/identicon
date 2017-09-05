@@ -32,3 +32,10 @@ the identicon on-the-fly each time a given user logs in.
 Here is a sample Identicon that this code produces for "justin":  
 
 ![Sample Identicon](https://github.com/justingamble/identicon/blob/master/examples/justin.png)
+
+## Sample Usage
+
+```$ iex -S mix
+iex> Identicon.main("justin")
+```
+
