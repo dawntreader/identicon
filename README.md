@@ -35,7 +35,8 @@ Here is a sample Identicon that this code produces for "justin":
 
 ## Sample Usage
 
-```$ iex -S mix
+```
+$ iex -S mix
 iex> Identicon.main("justin")
 ```
 
